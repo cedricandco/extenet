@@ -1,4 +1,4 @@
-﻿namespace ContosoUniversity;
+﻿namespace Extenet;
 
 public static class Utility
 {
