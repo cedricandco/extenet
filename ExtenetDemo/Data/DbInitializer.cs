@@ -12,56 +12,56 @@ public static class DbInitializer
             return;   // DB has been seeded
         }
 
-        var alexander = new Student
+        var alexander = new Client
         {
             FirstMidName = "Carson",
             LastName = "Alexander",
             EnrollmentDate = DateTime.Parse("2016-09-01")
         };
 
-        var alonso = new Student
+        var alonso = new Client
         {
             FirstMidName = "Meredith",
             LastName = "Alonso",
             EnrollmentDate = DateTime.Parse("2018-09-01")
         };
 
-        var anand = new Student
+        var anand = new Client
         {
             FirstMidName = "Arturo",
             LastName = "Anand",
             EnrollmentDate = DateTime.Parse("2019-09-01")
         };
 
-        var barzdukas = new Student
+        var barzdukas = new Client
         {
             FirstMidName = "Gytis",
             LastName = "Barzdukas",
             EnrollmentDate = DateTime.Parse("2018-09-01")
         };
 
-        var li = new Student
+        var li = new Client
         {
             FirstMidName = "Yan",
             LastName = "Li",
             EnrollmentDate = DateTime.Parse("2018-09-01")
         };
 
-        var justice = new Student
+        var justice = new Client
         {
             FirstMidName = "Peggy",
             LastName = "Justice",
             EnrollmentDate = DateTime.Parse("2017-09-01")
         };
 
-        var norman = new Student
+        var norman = new Client
         {
             FirstMidName = "Laura",
             LastName = "Norman",
             EnrollmentDate = DateTime.Parse("2019-09-01")
         };
 
-        var olivetto = new Student
+        var olivetto = new Client
         {
             FirstMidName = "Nino",
             LastName = "Olivetto",
@@ -216,56 +216,56 @@ public static class DbInitializer
         var enrollments = new Enrollment[]
         {
             new Enrollment {
-                Student = alexander,
+                Client = alexander,
                 Course = chemistry,
                 Grade = Grade.A
             },
                 new Enrollment {
-                Student = alexander,
+                Client = alexander,
                 Course = microeconomics,
                 Grade = Grade.C
                 },
                 new Enrollment {
-                Student = alexander,
+                Client = alexander,
                 Course = macroeconmics,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                Student = alonso,
+                Client = alonso,
                 Course = calculus,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                    Student = alonso,
+                    Client = alonso,
                 Course = trigonometry,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                Student = alonso,
+                Client = alonso,
                 Course = composition,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                Student = anand,
+                Client = anand,
                 Course = chemistry,
                 },
                 new Enrollment {
-                Student = anand,
+                Client = anand,
                 Course = microeconomics,
                 Grade = Grade.B
                 },
             new Enrollment {
-                Student = barzdukas,
+                Client = barzdukas,
                 Course = chemistry,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                Student = li,
+                Client = li,
                 Course = composition,
                 Grade = Grade.B
                 },
                 new Enrollment {
-                Student = justice,
+                Client = justice,
                 Course = literature,
                 Grade = Grade.B
                 }

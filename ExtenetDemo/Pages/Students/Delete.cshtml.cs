@@ -19,7 +19,7 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public Student Student { get; set; }
+    public Client Client { get; set; }
     public string ErrorMessage { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
@@ -29,11 +29,11 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        Student = await _context.Students
+        Client = await _context.Students
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Student == null)
+        if (Client == null)
         {
             return NotFound();
         }

@@ -46,7 +46,7 @@ public class IndexModel : PageModel
                           .Collection(x => x.Enrollments).LoadAsync();
             foreach (Enrollment enrollment in selectedCourse.Enrollments)
             {
-                await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
+                await _context.Entry(enrollment).Reference(x => x.Client).LoadAsync();
             }
             InstructorData.Enrollments = selectedCourse.Enrollments;
         }

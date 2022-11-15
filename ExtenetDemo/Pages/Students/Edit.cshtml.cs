@@ -15,7 +15,7 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public Student Student { get; set; }
+    public Client Client { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -24,9 +24,9 @@ public class EditModel : PageModel
             return NotFound();
         }
 
-        Student = await _context.Students.FindAsync(id);
+        Client = await _context.Students.FindAsync(id);
 
-        if (Student == null)
+        if (Client == null)
         {
             return NotFound();
         }
@@ -42,7 +42,7 @@ public class EditModel : PageModel
             return NotFound();
         }
 
-        if (await TryUpdateModelAsync<Student>(
+        if (await TryUpdateModelAsync<Client>(
             studentToUpdate,
             "student",
             s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))

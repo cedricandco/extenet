@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Extenet.Models;
 
-public class Student
+public class Client
 {
     public int ID { get; set; }
     [Required]

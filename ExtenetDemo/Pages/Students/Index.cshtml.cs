@@ -21,7 +21,7 @@ public class IndexModel : PageModel
     public string CurrentFilter { get; set; }
     public string CurrentSort { get; set; }
 
-    public PaginatedList<Student> Students { get; set; }
+    public PaginatedList<Client> Students { get; set; }
 
     public async Task OnGetAsync(string sortOrder,
         string currentFilter, string searchString, int? pageIndex)
@@ -40,7 +40,7 @@ public class IndexModel : PageModel
 
         CurrentFilter = searchString;
 
-        IQueryable<Student> studentsIQ = from s in _context.Students
+        IQueryable<Client> studentsIQ = from s in _context.Students
                                          select s;
         if (!String.IsNullOrEmpty(searchString))
         {
@@ -64,7 +64,7 @@ public class IndexModel : PageModel
         }
 
         var pageSize = Configuration.GetValue("PageSize", 4);
-        Students = await PaginatedList<Student>.CreateAsync(
+        Students = await PaginatedList<Client>.CreateAsync(
             studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
     }
 }

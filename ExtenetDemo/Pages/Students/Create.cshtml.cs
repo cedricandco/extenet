@@ -20,14 +20,14 @@ public class CreateModel : PageModel
     }
 
     [BindProperty]
-    public Student Student { get; set; }
+    public Client Client { get; set; }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
-        var emptyStudent = new Student();
+        var emptyStudent = new Client();
 
-        if (await TryUpdateModelAsync<Student>(
+        if (await TryUpdateModelAsync<Client>(
             emptyStudent,
             "student",   // Prefix for form value.
             s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
