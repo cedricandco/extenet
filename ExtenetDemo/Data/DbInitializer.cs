@@ -237,7 +237,7 @@ public static class DbInitializer
 
             var modulo = j % 7;
 
-            if (j <= items.Count() + modulo)
+            if (j + modulo < items.Count())
             {
                 sales.Add(new Sale
                 {

@@ -33,7 +33,7 @@ using (var scope = app.Services.CreateScope())
 
     context.Database.Migrate();
 
-    //DbInitializer.Initialize(context);
+    DbInitializer.Initialize(context);
 }
 
 app.UseHttpsRedirection();
