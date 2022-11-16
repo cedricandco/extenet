@@ -1,0 +1,584 @@
+﻿
+<!DOCTYPE html>
+<html lang="en-US">
+
+
+<!-- Mirrored from extenetsystems.com/network-operators/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Nov 2022 22:30:40 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Set up Meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Add Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+    <!-- This site is optimized with the Yoast SEO plugin v19.10 - https://yoast.com/wordpress/plugins/seo/ -->
+    <!-- / Yoast SEO plugin. -->
+
+
+    <link rel='dns-prefetch' href='http://maps.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://www.google.com/' />
+    <!-- This site uses the Google Analytics by MonsterInsights plugin v8.10.1 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+    <script src="http://www.googletagmanager.com/gtag/js?id=UA-61163432-1" data-cfasync="false" data-wpfc-render="false" type="text/javascript" async></script>
+    <script data-cfasync="false" data-wpfc-render="false" type="text/javascript">
+        var mi_version = '8.10.1';
+        var mi_track_user = true;
+        var mi_no_track_reason = '';
+
+        var disableStrs = [
+            'ga-disable-UA-61163432-1',
+        ];
+
+        /* Function to detect opted out users */
+        function __gtagTrackerIsOptedOut() {
+            for (var index = 0; index < disableStrs.length; index++) {
+                if (document.cookie.indexOf(disableStrs[index] + '=true') > -1) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /* Disable tracking if the opt-out cookie exists. */
+        if (__gtagTrackerIsOptedOut()) {
+            for (var index = 0; index < disableStrs.length; index++) {
+                window[disableStrs[index]] = true;
+            }
+        }
+
+        /* Opt-out function */
+        function __gtagTrackerOptout() {
+            for (var index = 0; index < disableStrs.length; index++) {
+                document.cookie = disableStrs[index] + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                window[disableStrs[index]] = true;
+            }
+        }
+
+        if ('undefined' === typeof gaOptout) {
+            function gaOptout() {
+                __gtagTrackerOptout();
+            }
+        }
+        window.dataLayer = window.dataLayer || [];
+
+        window.MonsterInsightsDualTracker = {
+            helpers: {},
+            trackers: {},
+        };
+        if (mi_track_user) {
+            function __gtagDataLayer() {
+                dataLayer.push(arguments);
+            }
+
+            function __gtagTracker(type, name, parameters) {
+                if (!parameters) {
+                    parameters = {};
+                }
+
+                if (parameters.send_to) {
+                    __gtagDataLayer.apply(null, arguments);
+                    return;
+                }
+
+                if (type === 'event') {
+
+                    parameters.send_to = monsterinsights_frontend.ua;
+                    __gtagDataLayer(type, name, parameters);
+                } else {
+                    __gtagDataLayer.apply(null, arguments);
+                }
+            }
+
+            __gtagTracker('js', new Date());
+            __gtagTracker('set', {
+                'developer_id.dZGIzZG': true,
+            });
+            __gtagTracker('config', 'UA-61163432-1', {"forceSSL":"true","link_attribution":"true"} );
+            window.gtag = __gtagTracker;										(function () {
+                /* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+                /* ga and __gaTracker compatibility shim. */
+                var noopfn = function () {
+                    return null;
+                };
+                var newtracker = function () {
+                    return new Tracker();
+                };
+                var Tracker = function () {
+                    return null;
+                };
+                var p = Tracker.prototype;
+                p.get = noopfn;
+                p.set = noopfn;
+                p.send = function () {
+                    var args = Array.prototype.slice.call(arguments);
+                    args.unshift('send');
+                    __gaTracker.apply(null, args);
+                };
+                var __gaTracker = function () {
+                    var len = arguments.length;
+                    if (len === 0) {
+                        return;
+                    }
+                    var f = arguments[len - 1];
+                    if (typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function') {
+                        if ('send' === arguments[0]) {
+                            var hitConverted, hitObject = false, action;
+                            if ('event' === arguments[1]) {
+                                if ('undefined' !== typeof arguments[3]) {
+                                    hitObject = {
+                                        'eventAction': arguments[3],
+                                        'eventCategory': arguments[2],
+                                        'eventLabel': arguments[4],
+                                        'value': arguments[5] ? arguments[5] : 1,
+                                    }
+                                }
+                            }
+                            if ('pageview' === arguments[1]) {
+                                if ('undefined' !== typeof arguments[2]) {
+                                    hitObject = {
+                                        'eventAction': 'page_view',
+                                        'page_path': arguments[2],
+                                    }
+                                }
+                            }
+                            if (typeof arguments[2] === 'object') {
+                                hitObject = arguments[2];
+                            }
+                            if (typeof arguments[5] === 'object') {
+                                Object.assign(hitObject, arguments[5]);
+                            }
+                            if ('undefined' !== typeof arguments[1].hitType) {
+                                hitObject = arguments[1];
+                                if ('pageview' === hitObject.hitType) {
+                                    hitObject.eventAction = 'page_view';
+                                }
+                            }
+                            if (hitObject) {
+                                action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
+                                hitConverted = mapArgs(hitObject);
+                                __gtagTracker('event', action, hitConverted);
+                            }
+                        }
+                        return;
+                    }
+
+                    function mapArgs(args) {
+                        var arg, hit = {};
+                        var gaMap = {
+                            'eventCategory': 'event_category',
+                            'eventAction': 'event_action',
+                            'eventLabel': 'event_label',
+                            'eventValue': 'event_value',
+                            'nonInteraction': 'non_interaction',
+                            'timingCategory': 'event_category',
+                            'timingVar': 'name',
+                            'timingValue': 'value',
+                            'timingLabel': 'event_label',
+                            'page': 'page_path',
+                            'location': 'page_location',
+                            'title': 'page_title',
+                        };
+                        for (arg in args) {
+                            if (!(!args.hasOwnProperty(arg) || !gaMap.hasOwnProperty(arg))) {
+                                hit[gaMap[arg]] = args[arg];
+                            } else {
+                                hit[arg] = args[arg];
+                            }
+                        }
+                        return hit;
+                    }
+
+                    try {
+                        f.hitCallback();
+                    } catch (ex) {
+                    }
+                };
+                __gaTracker.create = newtracker;
+                __gaTracker.getByName = newtracker;
+                __gaTracker.getAll = function () {
+                    return [];
+                };
+                __gaTracker.remove = noopfn;
+                __gaTracker.loaded = true;
+                window['__gaTracker'] = __gaTracker;
+            })();
+        } else {
+            console.log("");
+            (function () {
+                function __gtagTracker() {
+                    return null;
+                }
+
+                window['__gtagTracker'] = __gtagTracker;
+                window['gtag'] = __gtagTracker;
+            })();
+        }
+    </script>
+    <!-- / Google Analytics by MonsterInsights -->
+    <link rel='stylesheet' id='wp-block-library-css' href='https://extenetsystems.com/wp-includes/css/dist/block-library/style.min.css?ver=38d51233bf06b13aa764c71e161acedf' type='text/css' media='all' />
+    <link rel='stylesheet' id='classic-theme-styles-css' href='https://extenetsystems.com/wp-includes/css/classic-themes.min.css?ver=1' type='text/css' media='all' />
+    <link rel='stylesheet' id='ctf_styles-css' href='https://extenetsystems.com/wp-content/plugins/custom-twitter-feeds-pro/css/ctf-styles.min.css?ver=1.12.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='foundation-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/foundation.css?ver=6.5.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='lity-css-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/lity.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='custom-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/custom.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css' href='https://extenetsystems.com/wp-content/themes/extenet/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='global-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/global.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='footer-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/footer.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='dev-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/dev.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='blocks-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/blocks.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='blocks2-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/blocks2.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='ustom-new-css-css' href='https://extenetsystems.com/wp-content/themes/extenet/css/custom-new.css' type='text/css' media='all' />
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend-gtag.js?ver=8.10.1' id='monsterinsights-frontend-script-js'></script>
+    <script data-cfasync="false" data-wpfc-render="false" type="text/javascript" id='monsterinsights-frontend-script-js-extra'>        /* <![CDATA[ */
+        var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/extenetsystems.com","hash_tracking":"false","ua":"UA-61163432-1","v4_id":""};/* ]]> */
+    </script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/themes/extenet/js/custom.js?ver=38d51233bf06b13aa764c71e161acedf' id='custom-js'></script>
+    <link rel="https://api.w.org/" href="https://extenetsystems.com/wp-json/" />
+    <link rel="alternate" type="application/json" href="https://extenetsystems.com/wp-json/wp/v2/pages/30" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://extenetsystems.com/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://extenetsystems.com/wp-includes/wlwmanifest.xml" />
+    <link rel='shortlink' href='https://extenetsystems.com/?p=30' />
+    <link rel="alternate" type="application/json+oembed" href="https://extenetsystems.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fextenetsystems.com%2Fnetwork-operators%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="https://extenetsystems.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fextenetsystems.com%2Fnetwork-operators%2F&#038;format=xml" />
+    <!-- Custom Twitter Feeds CSS -->
+    <style type='text/css'>
+        .twitter_feeds a.ctf-author-name {
+            color: #fff !important;
+        }
+
+        .twitter_feeds a.ctf-author-screenname {
+            color: #FAAF41 !important;
+            font-size: 14px !important;
+            font-weight: 700;
+        }
+
+        .twitter_feeds a.ctf-tweet-date {
+            color: #fff !important;
+            font-size: 14px;
+            font-style: initial;
+            font-weight: 700;
+        }
+
+        .twitter_feeds a {
+            color: #FAAF41 !important;
+            font-family: "Gotham",sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .twitter_feeds p.ctf-tweet-text {
+            color: #fff;
+        }
+    </style>
+
+    <style type='text/css'>
+        body.admin-bar {
+            margin-top: 32px !important
+        }
+    </style>
+    <link rel="icon" href="https://extenetsystems.com/wp-content/uploads/2019/03/big-favicon.png" sizes="32x32" />
+    <link rel="icon" href="https://extenetsystems.com/wp-content/uploads/2019/03/big-favicon.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://extenetsystems.com/wp-content/uploads/2019/03/big-favicon.png" />
+    <meta name="msapplication-TileImage" content="https://extenetsystems.com/wp-content/uploads/2019/03/big-favicon.png" />
+    <style type="text/css" id="wp-custom-css">
+        body .team_main_slid_container {
+            background-size: 100%;
+            background-position: 60% 5%;
+        }
+
+        .post-item-card__excerpt {
+            display: none;
+        }
+
+        .single-blog .page-title {
+            margin-top: 20px;
+            padding-top: 80px;
+        }
+
+        .title-bar-title {
+            margin-right: 11px;
+        }
+
+        .header.fixed .grid-margin-x > .medium-12 {
+            padding: 0px 0 0;
+        }
+
+        }
+
+        .hero.gradient:before {
+            content: unset;
+        }
+    </style>
+</head>
+
+<body data-rsssl=1 class="page-template page-template-templates page-template-template-top-level-page page-template-templatestemplate-top-level-page-php page page-id-30 page-parent wp-custom-logo">
+    <div id="dQcKLRKNQHcy7EeAAHYVVZ55SJwJY7xeoT_-1UNnm-xk"></div>
+    <script src="https://extenetsystems.com/https://extenetsystems.com/mktdplp102cdn.azureedge.net/public/latest/js/ws-trackingd23c.js?v=1.69.1065.0"></script>
+    <div class="d365-mkt-config" style="display:none" data-website-id="QcKLRKNQHcy7EeAAHYVVZ55SJwJY7xeoT_-1UNnm-xk" data-hostname="3058ab585e33477284e65f41f9c3ec25.svc.dynamics.com"></div>
+    <script src="https://extenetsystems.com/https://extenetsystems.com/mktdplp102cdn.azureedge.net/public/latest/js/form-loaderd23c.js?v=1.69.1065.0"></script>
+    <div class="d365-mkt-config" style="display:none" data-website-id="QcKLRKNQHcy7EeAAHYVVZ55SJwJY7xeoT_-1UNnm-xk" data-hostname="3058ab585e33477284e65f41f9c3ec25.svc.dynamics.com"> </div>
+    <!-- <div class="preloader hide-for-medium">
+        <div class="preloader__icon"></div>
+    </div> -->
+    <!-- BEGIN of header -->
+    <h1 class="is-hidden">Network Operators</h1>
+    <header class="header">
+        <div class="header__top-block">
+            <div class="grid-container menu-grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="medium-3 small-12 cell">
+                        <div class="logo text-center medium-text-left">
+                            <a href="https://extenetsystems.com/" class="custom-logo-link" rel="home" title="ExteNet" itemscope><img src="https://extenetsystems.com/wp-content/uploads/2022/08/Logo.png" class="custom-logo" itemprop="siteLogo" alt="ExteNet"></a>
+                        </div>
+                    </div>
+                    <div class="medium-9 small-12 cell align-self-middle text-right relative">
+                        <div class="menu-top-header-menu-container">
+                            <ul id="menu-top-header-menu" class="top-header-menu">
+                                <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38"><a href="https://extenetsystems.com/about/">About Us</a></li>
+                                <li id="menu-item-3755" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3755"><a href="https://extenetsystems.com/news-events/?filterBy=press-releases">News &#038; Events</a></li>
+                                <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="https://extenetsystems.com/careers/">Careers</a></li>
+                                <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="https://extenetsystems.com/contact/">Contact</a></li>
+                            </ul>
+                        </div>															<a class="button" href="https://extenetsystems.com/customer-support">Customer Support</a>
+                        <div class="searchbox">
+                            <!-- BEGIN of search form -->
+                            <form method="get" id="searchform" action="https://extenetsystems.com/">
+                                <input type="search" name="s" id="s" placeholder="Enter Search Term" value="" />
+                                <button type="submit" name="submit" id="searchsubmit">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search">
+                                        <path fill="currentColor" d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z" class="">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+                            <!-- END of search form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header-main-menu">
+            <div class="grid-container menu-grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="medium-12 cell text-center">
+                        <a href="https://extenetsystems.com/" class="mobile-logo">
+                            <img src="https://extenetsystems.com/wp-content/uploads/2019/03/2-layers.svg" alt="">
+                        </a>
+                        <div class="title-bar hide-for-medium" data-responsive-toggle="main-menu" data-hide-for="medium">
+                            <button class="menu-icon" type="button" data-toggle aria-label="Menu" aria-controls="navigation"><span></span></button>
+                            <div class="title-bar-title">Menu</div>
+                        </div>
+                        <nav class="top-bar" id="main-menu">
+                            <div class="menu-header-menu-container">
+                                <ul id="menu-header-menu" class="menu header-menu" data-responsive-menu="accordion medium-dropdown" data-submenu-toggle="true" data-multi-open="false" data-close-on-click-inside="false">
+                                    <li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-30 current_page_item menu-item-has-children has-dropdown menu-item-44">
+                                        <a href="/" aria-current="page">Home</a>
+                                    </li>
+                                    <li id="menu-item-368" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-dropdown menu-item-368">
+                                        <a href="/Students">Clients</a>
+
+                                    </li>
+                                    <li id="menu-item-367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-dropdown menu-item-367">
+                                        <a href="/Departments">Departments</a>
+                                    </li>
+                                    <li id="menu-item-366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-dropdown menu-item-366">
+                                        <a href="/Instructors">Vendors</a>
+                                    </li>
+                                    <li id="menu-item-365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-dropdown menu-item-365">
+                                        <a href="/Courses">Items</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- END of header -->
+
+    <div class="hero gradient" style="min-height: 120px;">
+    </div>
+
+    <div class="main-content relative">
+        <div class="grid-container small-grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="cell">
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- BEGIN of footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    <div class="large-2 medium-12 small-12 cell">
+                        <aside id="black-studio-tinymce-2" class="widget widget_black_studio_tinymce">
+                            <div class="textwidget">
+                                <p><img class="alignnone wp-image-1122 attachment-svg" src="https://extenetsystems.com/wp-content/uploads/2019/04/Logo_wTag_stack.svg" alt="" width="223" height="61" /></p>
+                                <p>
+                                    <a href="https://extenetsystems.com/news-events/">News &amp; Events</a><br />
+                                    <a href="https://extenetsystems.com/careers/">Careers</a><br />
+                                    <a href="https://extenetsystems.com/contact/">Contact</a><br />
+                                    <a href="https://extenetsystems.com/resource-center/privacy-center/">Data Privacy</a><br />
+                                    <a href="https://employeeportal.extenetsystems.com/"><span style="color: #faaf41;">Intranet</span></a>
+                                </p>
+                                <p><span style="color: #ffffff;"><strong>Connect</strong></span></p>
+                                <p>
+                                    <ul class="socials">
+                                        <li class="social-item">
+                                            <a class="social-item__link" href="https://www.youtube.com/channel/UCTXC2gE8-iYNB2LT0kZ7rUA" target="_blank" rel="noopener">
+                                                <i class=" social-item__icon fab fa-youtube"></i>
+                                            </a>
+                                        </li>
+                                        <li class="social-item">
+                                            <a class="social-item__link" href="https://twitter.com/ExteNetSystems" target="_blank" rel="noopener">
+                                                <i class=" social-item__icon fab fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="social-item">
+                                            <a class="social-item__link" href="https://www.linkedin.com/company/extenet-systems-inc./about/" target="_blank" rel="noopener">
+                                                <i class=" social-item__icon fab fa-linkedin-in"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="large-6 medium-12 small-12 cell">
+                        <aside id="custom-twitter-feeds-widget-2" class="widget widget_custom-twitter-feeds-widget">
+                            <h4>Latest Tweets</h4><!-- Custom Twitter Feeds by Smash Balloon --><div id="ctf" class="ctf ctf-type-usertimeline twitter_feeds ctf-styles" style="width: 100%;" data-ctfshortcode="{}" data-feedid="ctf__2" data-ctfneeded="-8" data-ctfmaxmedia="4" data-ctfimagecols="auto">
+                                <div class="ctf-tweet-items">
+                                    <div class="ctf-item ctf-author-extenetsystems ctf-new" id="ctf_1592243914039336961" style="">
+                                        <div class="ctf-author-box"><div class="ctf-author-box-link" style=""><a href="https://twitter.com/ExteNetSystems" class="ctf-author-avatar" target="_blank" rel="noopener noreferrer" style=""><img src="https://extenetsystems.com/wp-content/plugins/custom-twitter-feeds-pro/img/placeholder.png" data-avatar="https://pbs.twimg.com/profile_images/1508876272595881985/7GB2Fd0k_normal.jpg" alt="ExteNetSystems avatar" width="48" height="48"></a><a href="https://twitter.com/ExteNetSystems" target="_blank" rel="noopener noreferrer" class="ctf-author-name" style="">ExteNet Systems, LLC</a><a href="https://twitter.com/ExteNetSystems" class="ctf-author-screenname" target="_blank" rel="noopener noreferrer" style="">AAA</a><span class="ctf-screename-sep">&middot;</span><div class="ctf-tweet-meta"><a href="https://twitter.com/ExteNetSystems/status/1592243914039336961" class="ctf-tweet-date" target="_blank" rel="noopener noreferrer" style="">14 Nov<span class="ctf-screenreader"> 1592243914039336961</span></a></div></div></div><div class="ctf-tweet-content">
+                                            <p class="ctf-tweet-text" style="">
+                                                A   Chief   #Connectivity   Officer   for   a   rural   community?   We   like   the   sound   of   that!  <br />
+                                                <br />
+                                                About   1/3   of   #Michigan   households  <a href="#" class="ctf_more">...</a><span class="ctf_remaining">
+                                                    struggle   with   some   sort   of   #DigitalDivide,   but   the   state   is   a   step   closer   toward   bridging   it   with   new   CCO   Eric   Frederick.  <br />
+                                                    <br />
+                                                    Learn   more:   https://www.michiganfarmnews.com/state-s-new-chief-connectivity-officer-seeks-digital-equity-for-rural-michigan
+                                                </span>
+                                            </p>
+                                        </div><div class="ctf-tweet-actions"><a href="https://twitter.com/ExteNetSystems/status/1592243914039336961" class="ctf-twitterlink" style="" target="_blank">Twitter <span class="ctf-screenreader">1592243914039336961</span></a></div>
+                                    </div><div class="ctf-item ctf-author-extenetsystems ctf-new" id="ctf_1591114638598574080" style="">
+                                        <div class="ctf-author-box"><div class="ctf-author-box-link" style=""><a href="https://twitter.com/ExteNetSystems" class="ctf-author-avatar" target="_blank" rel="noopener noreferrer" style=""><img src="https://extenetsystems.com/wp-content/plugins/custom-twitter-feeds-pro/img/placeholder.png" data-avatar="https://pbs.twimg.com/profile_images/1508876272595881985/7GB2Fd0k_normal.jpg" alt="ExteNetSystems avatar" width="48" height="48"></a><a href="https://twitter.com/ExteNetSystems" target="_blank" rel="noopener noreferrer" class="ctf-author-name" style="">ExteNet Systems, LLC</a><a href="https://twitter.com/ExteNetSystems" class="ctf-author-screenname" target="_blank" rel="noopener noreferrer" style="">BB</a><span class="ctf-screename-sep">&middot;</span><div class="ctf-tweet-meta"><a href="https://twitter.com/ExteNetSystems/status/1591114638598574080" class="ctf-tweet-date" target="_blank" rel="noopener noreferrer" style="">11 Nov<span class="ctf-screenreader"> 1591114638598574080</span></a></div></div></div><div class="ctf-tweet-content">
+                                            <p class="ctf-tweet-text" style="">
+                                                As   we   take   the   time   to   acknowledge   and   honor   all   who   served   this   #VeteransDay,   we   want   to   highlight   #TeamExteNet   who've<a href="#" class="ctf_more">...</a><span class="ctf_remaining">
+                                                    served: <br />
+                                                    <br />
+                                                    Brian   Corrigan <br />
+                                                    Ken   Deatrick <br />
+                                                    Nathan   French <br />
+                                                    Hanri   Glemaud  <br />
+                                                    Joe   Medina <br />
+                                                    Kaili   Nawahine <br />
+                                                    William   Vorce <br />
+                                                    Terrell   Summers <br />
+                                                    <br />
+                                                    Read   more   at   https://lnkd.in/g5wbGZRp
+                                                </span>
+                                            </p>
+                                        </div><div class="ctf-tweet-actions"><a href="https://twitter.com/ExteNetSystems/status/1591114638598574080" class="ctf-twitterlink" style="" target="_blank">Twitter <span class="ctf-screenreader">1591114638598574080</span></a></div>
+                                    </div><span class="ctf-resized-image-data" data-feedid="ctf__2" data-resized="[]"></span>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <div class="large-2 medium-12 small-12 cell locations">
+                        <aside id="black-studio-tinymce-6" class="widget widget_black_studio_tinymce"><h4>Locations</h4><div class="textwidget"></div></aside>
+                        <div class="footer__cities">
+                            <a class="contact-marker" href="https://extenetsystems.com/contact/?index=1">Lisle</a>
+
+                            <a class="contact-marker" href="https://extenetsystems.com/contact/?index=2">Dallas</a>
+
+                            <a class="contact-marker" href="https://extenetsystems.com/contact/?index=3">Las Vegas</a>
+
+                            <a class="contact-marker" href="https://extenetsystems.com/contact/?index=4">San Ramon</a>
+
+                            <a class="contact-marker" href="https://extenetsystems.com/contact/?index=5">Frisco</a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="large-2 medium-12 small-12 cell">
+                        <aside id="black-studio-tinymce-5" class="widget widget_black_studio_tinymce">
+                            <h4>Headquarters</h4><div class="textwidget">
+                                <p>
+                                    (P) <a href="tel:6305053800">630-505-3800</a><br />
+                                    (F) 630-577-1332<br />
+                                    <a href="https://extenetsystems.com/contact/#location-position">
+                                        3030 Warrenville Rd.<br />
+                                        Lisle, IL 60532
+                                    </a>
+                                </p>
+                                <p>&nbsp;</p>
+                                <p><a class="button" href="https://extenetsystems.com/customer-support/">Customer Support</a></p>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright text-center">
+            <p>© 2022 ExteNet Systems. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- END of footer -->
+
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/themes/extenet/js/plugins/lity.min8066.js?ver=2.4.1' id='lity-js-js'></script>
+    <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAjTRur0OC2sYSlPyTHOmgGxrITOJECXTQ&amp;v=3.exp' id='google.maps.api-js'></script>
+    <script type='text/javascript' id='scripts-js-extra'>
+            /* <![CDATA[ */
+            var ajax = {"url":"https:\/\/extenetsystems.com\/wp-admin\/admin-ajax.php","nonce":"79b946c1c2"};
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/themes/extenet/js/scripts.min.js' id='scripts-js'></script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/plugins/page-links-to/dist/new-tabe485.js?ver=3.3.6' id='page-links-to-js'></script>
+    <script type='text/javascript' id='gforms_recaptcha_recaptcha-js-extra'>
+            /* <![CDATA[ */
+            var gfoàà
+
+
+            rms_recaptcha_recaptcha_strings = {"site_key":"6LeEiKIfAAAAAN06MzBbKidVfkGB4VkoNsIaJ_s4","ajaxurl":"https:\/\/extenetsystems.com\/wp-admin\/admin-ajax.php","nonce":"7969c8881a"};
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='https://extenetsystems.com/https://extenetsystems.com/www.google.com/recaptcha/apice24.js?render=6LeEiKIfAAAAAN06MzBbKidVfkGB4VkoNsIaJ_s4&amp;ver=1.1' id='gforms_recaptcha_recaptcha-js'></script>
+    <script type='text/javascript' id='ctf_scripts-js-extra'>
+            /* <![CDATA[ */
+            var ctfOptions = {"ajax_url":"https:\/\/extenetsystems.com\/wp-admin\/admin-ajax.php","font_method":"svg","placeholder":"https:\/\/extenetsystems.com\/wp-content\/plugins\/custom-twitter-feeds-pro\/img\/placeholder.png","resized_url":"https:\/\/extenetsystems.com\/wp-content\/uploads\/sb-twitter-feed-images\/"};
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='https://extenetsystems.com/wp-content/plugins/custom-twitter-feeds-pro/js/ctf-scripts-1-10.min35d0.js?ver=1.12.1' id='ctf_scripts-js'></script>
+    <script>!function ($) { $(document).foundation(); }(window.jQuery); </script>
+</body>
+
+
+<!-- Mirrored from extenetsystems.com/network-operators/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Nov 2022 22:30:51 GMT -->
+</html>
+
+
+
+
+
+@await RenderSectionAsync("Scripts", required: false)
+
