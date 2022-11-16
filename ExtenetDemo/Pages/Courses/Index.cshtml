@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Courses[0].CourseID)
+                @Html.DisplayNameFor(model => model.Courses[0].ItemID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Courses[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Credits)
+                @Html.DisplayNameFor(model => model.Courses[0].Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Courses[0].Department)
@@ -33,21 +33,21 @@
 {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CourseID)
+                @Html.DisplayFor(modelItem => item.ItemID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Credits)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Department.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.CourseID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CourseID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ItemID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ItemID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ItemID">Delete</a>
             </td>
         </tr>
 }

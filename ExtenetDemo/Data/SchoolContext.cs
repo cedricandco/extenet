@@ -9,19 +9,19 @@ public class SchoolContext : DbContext
     {
     }
 
-    public DbSet<Course> Courses { get; set; }
-    public DbSet<Enrollment> Enrollments { get; set; }
-    public DbSet<Client> Students { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<Sale> Enrollments { get; set; }
+    public DbSet<Client> Clients { get; set; }
     public DbSet<Department> Departments { get; set; }
-    public DbSet<Instructor> Instructors { get; set; }
+    public DbSet<Vendor> Vendors { get; set; }
     public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Course>().ToTable(nameof(Course))
-            .HasMany(c => c.Instructors)
+        modelBuilder.Entity<Item>().ToTable(nameof(Item))
+            .HasMany(c => c.Vendors)
             .WithMany(i => i.Courses);
         modelBuilder.Entity<Client>().ToTable(nameof(Client));
-        modelBuilder.Entity<Instructor>().ToTable(nameof(Instructor));
+        modelBuilder.Entity<Vendor>().ToTable(nameof(Vendor));
     }
 }

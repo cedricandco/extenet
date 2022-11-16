@@ -10,19 +10,19 @@ public class InstructorCoursesPageModel : PageModel
     public List<AssignedCourseData> AssignedCourseDataList;
 
     public void PopulateAssignedCourseData(SchoolContext context,
-                                           Instructor instructor)
+                                           Vendor vendor)
     {
-        var allCourses = context.Courses;
+        var allCourses = context.Items;
         var instructorCourses = new HashSet<int>(
-            instructor.Courses.Select(c => c.CourseID));
+            vendor.Courses.Select(c => c.ItemID));
         AssignedCourseDataList = new List<AssignedCourseData>();
         foreach (var course in allCourses)
         {
             AssignedCourseDataList.Add(new AssignedCourseData
             {
-                CourseID = course.CourseID,
+                CourseID = course.ItemID,
                 Title = course.Title,
-                Assigned = instructorCourses.Contains(course.CourseID)
+                Assigned = instructorCourses.Contains(course.ItemID)
             });
         }
     }

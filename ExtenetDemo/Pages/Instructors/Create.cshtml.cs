@@ -19,8 +19,8 @@ public class CreateModel : InstructorCoursesPageModel
 
     public IActionResult OnGet()
     {
-        var instructor = new Instructor();
-        instructor.Courses = new List<Course>();
+        var instructor = new Vendor();
+        instructor.Courses = new List<Item>();
 
         // Provides an empty collection for the foreach loop
         // foreach (var course in Model.AssignedCourseDataList)
@@ -30,23 +30,23 @@ public class CreateModel : InstructorCoursesPageModel
     }
 
     [BindProperty]
-    public Instructor Instructor { get; set; }
+    public Vendor Vendor { get; set; }
 
     public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
     {
-        var newInstructor = new Instructor();
+        var newInstructor = new Vendor();
 
         if (selectedCourses.Length > 0)
         {
-            newInstructor.Courses = new List<Course>();
+            newInstructor.Courses = new List<Item>();
             // Load collection with one DB call.
-            _context.Courses.Load();
+            _context.Items.Load();
         }
 
         // Add selected Courses courses to the new instructor.
         foreach (var course in selectedCourses)
         {
-            var foundCourse = await _context.Courses.FindAsync(int.Parse(course));
+            var foundCourse = await _context.Items.FindAsync(int.Parse(course));
             if (foundCourse != null)
             {
                 newInstructor.Courses.Add(foundCourse);
@@ -59,13 +59,13 @@ public class CreateModel : InstructorCoursesPageModel
 
         try
         {
-            if (await TryUpdateModelAsync<Instructor>(
+            if (await TryUpdateModelAsync<Vendor>(
                             newInstructor,
-                            "Instructor",
+                            "vendor",
                             i => i.FirstMidName, i => i.LastName,
                             i => i.HireDate, i => i.OfficeAssignment))
             {
-                _context.Instructors.Add(newInstructor);
+                _context.Vendors.Add(newInstructor);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }

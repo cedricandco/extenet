@@ -15,7 +15,7 @@ public class EditModel : DepartmentNamePageModel
     }
 
     [BindProperty]
-    public Course Course { get; set; }
+    public Item Item { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -24,16 +24,16 @@ public class EditModel : DepartmentNamePageModel
             return NotFound();
         }
 
-        Course = await _context.Courses
-            .Include(c => c.Department).FirstOrDefaultAsync(m => m.CourseID == id);
+        Item = await _context.Items
+            .Include(c => c.Department).FirstOrDefaultAsync(m => m.ItemID == id);
 
-        if (Course == null)
+        if (Item == null)
         {
             return NotFound();
         }
 
         // Select current DepartmentID.
-        PopulateDepartmentsDropDownList(_context, Course.DepartmentID);
+        PopulateDepartmentsDropDownList(_context, Item.DepartmentID);
         return Page();
     }
 
@@ -44,17 +44,17 @@ public class EditModel : DepartmentNamePageModel
             return NotFound();
         }
 
-        var courseToUpdate = await _context.Courses.FindAsync(id);
+        var courseToUpdate = await _context.Items.FindAsync(id);
 
         if (courseToUpdate == null)
         {
             return NotFound();
         }
 
-        if (await TryUpdateModelAsync<Course>(
+        if (await TryUpdateModelAsync<Item>(
              courseToUpdate,
-             "course",   // Prefix for form value.
-               c => c.Credits, c => c.DepartmentID, c => c.Title))
+             "item",   // Prefix for form value.
+               c => c.Price, c => c.DepartmentID, c => c.Title))
         {
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");

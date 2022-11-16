@@ -20,18 +20,18 @@ public class CreateModel : DepartmentNamePageModel
     }
 
     [BindProperty]
-    public Course Course { get; set; }
+    public Item Item { get; set; }
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var emptyCourse = new Course();
+        var emptyCourse = new Item();
 
-        if (await TryUpdateModelAsync<Course>(
+        if (await TryUpdateModelAsync<Item>(
              emptyCourse,
-             "course",   // Prefix for form value.
-             s => s.CourseID, s => s.DepartmentID, s => s.Title, s => s.Credits))
+             "item",   // Prefix for form value.
+             s => s.ItemID, s => s.DepartmentID, s => s.Title, s => s.Price))
         {
-            _context.Courses.Add(emptyCourse);
+            _context.Items.Add(emptyCourse);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }

@@ -34,7 +34,7 @@ public class EditModel : PageModel
         }
 
         // Use strongly typed data rather than ViewData.
-        InstructorNameSL = new SelectList(_context.Instructors,
+        InstructorNameSL = new SelectList(_context.Vendors,
             "ID", "FirstMidName");
 
         return Page();
@@ -95,7 +95,7 @@ public class EditModel : PageModel
             }
         }
 
-        InstructorNameSL = new SelectList(_context.Instructors,
+        InstructorNameSL = new SelectList(_context.Vendors,
             "ID", "FullName", departmentToUpdate.InstructorID);
 
         return Page();
@@ -108,7 +108,7 @@ public class EditModel : PageModel
         // and overides the Department instance values when displaying Page().
         ModelState.AddModelError(string.Empty,
             "Unable to save. The department was deleted by another user.");
-        InstructorNameSL = new SelectList(_context.Instructors, "ID", "FullName", Department.InstructorID);
+        InstructorNameSL = new SelectList(_context.Vendors, "ID", "FullName", Department.InstructorID);
         return Page();
     }
 
@@ -133,10 +133,10 @@ public class EditModel : PageModel
         }
         if (dbValues.InstructorID != clientValues.InstructorID)
         {
-            Instructor dbInstructor = await _context.Instructors
+            Vendor dbVendor = await _context.Vendors
                .FindAsync(dbValues.InstructorID);
             ModelState.AddModelError("Department.InstructorID",
-                $"Current value: {dbInstructor?.FullName}");
+                $"Current value: {dbVendor?.FullName}");
         }
 
         ModelState.AddModelError(string.Empty,

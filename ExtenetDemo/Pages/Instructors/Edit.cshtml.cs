@@ -15,7 +15,7 @@ public class EditModel : InstructorCoursesPageModel
     }
 
     [BindProperty]
-    public Instructor Instructor { get; set; }
+    public Vendor Vendor { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -24,17 +24,17 @@ public class EditModel : InstructorCoursesPageModel
             return NotFound();
         }
 
-        Instructor = await _context.Instructors
+        Vendor = await _context.Vendors
             .Include(i => i.OfficeAssignment)
             .Include(i => i.Courses)
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Instructor == null)
+        if (Vendor == null)
         {
             return NotFound();
         }
-        PopulateAssignedCourseData(_context, Instructor);
+        PopulateAssignedCourseData(_context, Vendor);
         return Page();
     }
 
@@ -45,7 +45,7 @@ public class EditModel : InstructorCoursesPageModel
             return NotFound();
         }
 
-        var instructorToUpdate = await _context.Instructors
+        var instructorToUpdate = await _context.Vendors
             .Include(i => i.OfficeAssignment)
             .Include(i => i.Courses)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -55,9 +55,9 @@ public class EditModel : InstructorCoursesPageModel
             return NotFound();
         }
 
-        if (await TryUpdateModelAsync<Instructor>(
+        if (await TryUpdateModelAsync<Vendor>(
             instructorToUpdate,
-            "Instructor",
+            "vendor",
             i => i.FirstMidName, i => i.LastName,
             i => i.HireDate, i => i.OfficeAssignment))
         {
@@ -76,33 +76,33 @@ public class EditModel : InstructorCoursesPageModel
     }
 
     public void UpdateInstructorCourses(string[] selectedCourses,
-                                        Instructor instructorToUpdate)
+                                        Vendor vendorToUpdate)
     {
         if (selectedCourses == null)
         {
-            instructorToUpdate.Courses = new List<Course>();
+            vendorToUpdate.Courses = new List<Item>();
             return;
         }
 
         var selectedCoursesHS = new HashSet<string>(selectedCourses);
         var instructorCourses = new HashSet<int>
-            (instructorToUpdate.Courses.Select(c => c.CourseID));
-        foreach (var course in _context.Courses)
+            (vendorToUpdate.Courses.Select(c => c.ItemID));
+        foreach (var course in _context.Items)
         {
-            if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+            if (selectedCoursesHS.Contains(course.ItemID.ToString()))
             {
-                if (!instructorCourses.Contains(course.CourseID))
+                if (!instructorCourses.Contains(course.ItemID))
                 {
-                    instructorToUpdate.Courses.Add(course);
+                    vendorToUpdate.Courses.Add(course);
                 }
             }
             else
             {
-                if (instructorCourses.Contains(course.CourseID))
+                if (instructorCourses.Contains(course.ItemID))
                 {
-                    var courseToRemove = instructorToUpdate.Courses.Single(
-                                                    c => c.CourseID == course.CourseID);
-                    instructorToUpdate.Courses.Remove(courseToRemove);
+                    var courseToRemove = vendorToUpdate.Courses.Single(
+                                                    c => c.ItemID == course.ItemID);
+                    vendorToUpdate.Courses.Remove(courseToRemove);
                 }
             }
         }

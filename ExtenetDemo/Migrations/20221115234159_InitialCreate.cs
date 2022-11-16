@@ -3,29 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Extenet.Migrations
+namespace ExtenetDemo.Migrations
 {
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Instructor",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Instructor", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Student",
+                name: "Client",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -36,7 +21,22 @@ namespace Extenet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.ID);
+                    table.PrimaryKey("PK_Client", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vendor",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vendor", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,15 +48,17 @@ namespace Extenet.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Budget = table.Column<decimal>(type: "money", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InstructorID = table.Column<int>(type: "int", nullable: true)
+                    InstructorID = table.Column<int>(type: "int", nullable: true),
+                    ConcurrencyToken = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
+                    AdministratorID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departments", x => x.DepartmentID);
                     table.ForeignKey(
-                        name: "FK_Departments_Instructor_InstructorID",
-                        column: x => x.InstructorID,
-                        principalTable: "Instructor",
+                        name: "FK_Departments_Vendor_AdministratorID",
+                        column: x => x.AdministratorID,
+                        principalTable: "Vendor",
                         principalColumn: "ID");
                 });
 
@@ -64,34 +66,34 @@ namespace Extenet.Migrations
                 name: "OfficeAssignments",
                 columns: table => new
                 {
-                    InstructorID = table.Column<int>(type: "int", nullable: false),
+                    VendorID = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OfficeAssignments", x => x.InstructorID);
+                    table.PrimaryKey("PK_OfficeAssignments", x => x.VendorID);
                     table.ForeignKey(
-                        name: "FK_OfficeAssignments_Instructor_InstructorID",
-                        column: x => x.InstructorID,
-                        principalTable: "Instructor",
+                        name: "FK_OfficeAssignments_Vendor_VendorID",
+                        column: x => x.VendorID,
+                        principalTable: "Vendor",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Item",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    ItemID = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Credits = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.CourseID);
+                    table.PrimaryKey("PK_Item", x => x.ItemID);
                     table.ForeignKey(
-                        name: "FK_Course_Departments_DepartmentID",
+                        name: "FK_Item_Departments_DepartmentID",
                         column: x => x.DepartmentID,
                         principalTable: "Departments",
                         principalColumn: "DepartmentID",
@@ -99,104 +101,104 @@ namespace Extenet.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseInstructor",
-                columns: table => new
-                {
-                    CoursesCourseID = table.Column<int>(type: "int", nullable: false),
-                    InstructorsID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseInstructor", x => new { x.CoursesCourseID, x.InstructorsID });
-                    table.ForeignKey(
-                        name: "FK_CourseInstructor_Course_CoursesCourseID",
-                        column: x => x.CoursesCourseID,
-                        principalTable: "Course",
-                        principalColumn: "CourseID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CourseInstructor_Instructor_InstructorsID",
-                        column: x => x.InstructorsID,
-                        principalTable: "Instructor",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Enrollments",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
+                    SaleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseID = table.Column<int>(type: "int", nullable: false),
-                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    ItemID = table.Column<int>(type: "int", nullable: false),
+                    ClientID = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollments", x => x.EnrollmentID);
+                    table.PrimaryKey("PK_Enrollments", x => x.SaleID);
                     table.ForeignKey(
-                        name: "FK_Enrollments_Course_CourseID",
-                        column: x => x.CourseID,
-                        principalTable: "Course",
-                        principalColumn: "CourseID",
+                        name: "FK_Enrollments_Client_ClientID",
+                        column: x => x.ClientID,
+                        principalTable: "Client",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Enrollments_Student_StudentID",
-                        column: x => x.StudentID,
-                        principalTable: "Student",
+                        name: "FK_Enrollments_Item_ItemID",
+                        column: x => x.ItemID,
+                        principalTable: "Item",
+                        principalColumn: "ItemID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ItemVendor",
+                columns: table => new
+                {
+                    CoursesItemID = table.Column<int>(type: "int", nullable: false),
+                    VendorsID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemVendor", x => new { x.CoursesItemID, x.VendorsID });
+                    table.ForeignKey(
+                        name: "FK_ItemVendor_Item_CoursesItemID",
+                        column: x => x.CoursesItemID,
+                        principalTable: "Item",
+                        principalColumn: "ItemID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemVendor_Vendor_VendorsID",
+                        column: x => x.VendorsID,
+                        principalTable: "Vendor",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_DepartmentID",
-                table: "Course",
+                name: "IX_Departments_AdministratorID",
+                table: "Departments",
+                column: "AdministratorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollments_ClientID",
+                table: "Enrollments",
+                column: "ClientID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollments_ItemID",
+                table: "Enrollments",
+                column: "ItemID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Item_DepartmentID",
+                table: "Item",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseInstructor_InstructorsID",
-                table: "CourseInstructor",
-                column: "InstructorsID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Departments_InstructorID",
-                table: "Departments",
-                column: "InstructorID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_CourseID",
-                table: "Enrollments",
-                column: "CourseID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentID",
-                table: "Enrollments",
-                column: "StudentID");
+                name: "IX_ItemVendor_VendorsID",
+                table: "ItemVendor",
+                column: "VendorsID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseInstructor");
+                name: "Enrollments");
 
             migrationBuilder.DropTable(
-                name: "Enrollments");
+                name: "ItemVendor");
 
             migrationBuilder.DropTable(
                 name: "OfficeAssignments");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Client");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Item");
 
             migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Instructor");
+                name: "Vendor");
         }
     }
 }

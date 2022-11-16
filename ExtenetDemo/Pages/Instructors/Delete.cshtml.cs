@@ -16,7 +16,7 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public Instructor Instructor { get; set; }
+    public Vendor Vendor { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -25,9 +25,9 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        Instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.ID == id);
+        Vendor = await _context.Vendors.FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Instructor == null)
+        if (Vendor == null)
         {
             return NotFound();
         }
@@ -41,11 +41,11 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        Instructor instructor = await _context.Instructors
+        Vendor vendor = await _context.Vendors
             .Include(i => i.Courses)
             .SingleAsync(i => i.ID == id);
 
-        if (instructor == null)
+        if (vendor == null)
         {
             return RedirectToPage("./Index");
         }
@@ -55,7 +55,7 @@ public class DeleteModel : PageModel
             .ToListAsync();
         departments.ForEach(d => d.InstructorID = null);
 
-        _context.Instructors.Remove(instructor);
+        _context.Vendors.Remove(vendor);
 
         await _context.SaveChangesAsync();
         return RedirectToPage("./Index");

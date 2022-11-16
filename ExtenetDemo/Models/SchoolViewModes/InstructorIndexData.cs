@@ -2,7 +2,7 @@
 
 public class InstructorIndexData
 {
-    public IEnumerable<Instructor> Instructors { get; set; }
-    public IEnumerable<Course> Courses { get; set; }
-    public IEnumerable<Enrollment> Enrollments { get; set; }
+    public IEnumerable<Vendor> Instructors { get; set; }
+    public IEnumerable<Item> Courses { get; set; }
+    public IEnumerable<Sale> Enrollments { get; set; }
 }

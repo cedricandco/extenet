@@ -29,10 +29,10 @@ public class CreateModel : PageModel
 
         if (await TryUpdateModelAsync<Client>(
             emptyStudent,
-            "student",   // Prefix for form value.
+            "client",   // Prefix for form value.
             s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
         {
-            _context.Students.Add(emptyStudent);
+            _context.Clients.Add(emptyStudent);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }

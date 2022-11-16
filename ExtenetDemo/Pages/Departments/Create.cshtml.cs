@@ -19,7 +19,7 @@ public class CreateModel : PageModel
 
     public IActionResult OnGet()
     {
-    ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FirstMidName");
+    ViewData["InstructorID"] = new SelectList(_context.Vendors, "ID", "FirstMidName");
         return Page();
     }
 

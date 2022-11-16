@@ -15,7 +15,7 @@ public class DetailsModel : PageModel
         _context = context;
     }
 
-    public Course Course { get; set; }
+    public Item Item { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -24,10 +24,10 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        Course = await _context.Courses
-            .Include(c => c.Department).FirstOrDefaultAsync(m => m.CourseID == id);
+        Item = await _context.Items
+            .Include(c => c.Department).FirstOrDefaultAsync(m => m.ItemID == id);
 
-        if (Course == null)
+        if (Item == null)
         {
             return NotFound();
         }

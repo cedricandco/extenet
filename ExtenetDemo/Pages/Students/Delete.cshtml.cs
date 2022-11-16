@@ -29,7 +29,7 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        Client = await _context.Students
+        Client = await _context.Clients
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
 
@@ -53,7 +53,7 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        var student = await _context.Students.FindAsync(id);
+        var student = await _context.Clients.FindAsync(id);
 
         if (student == null)
         {
@@ -62,7 +62,7 @@ public class DeleteModel : PageModel
 
         try
         {
-            _context.Students.Remove(student);
+            _context.Clients.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }

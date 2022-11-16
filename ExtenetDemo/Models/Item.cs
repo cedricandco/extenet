@@ -3,21 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Extenet.Models;
 
-public class Course
+public class Item
 {
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     [Display(Name = "Number")]
-    public int CourseID { get; set; }
+    public int ItemID { get; set; }
 
     [StringLength(50, MinimumLength = 3)]
     public string Title { get; set; }
 
-    [Range(0, 5)]
-    public int Credits { get; set; }
+    public int Price { get; set; }
 
     public int DepartmentID { get; set; }
 
     public Department Department { get; set; }
-    public ICollection<Enrollment> Enrollments { get; set; }
-    public ICollection<Instructor> Instructors { get; set; }
+    public ICollection<Sale> Sales { get; set; }
+    public ICollection<Vendor> Vendors { get; set; }
 }

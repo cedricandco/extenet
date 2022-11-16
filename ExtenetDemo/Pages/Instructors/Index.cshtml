@@ -49,7 +49,7 @@
                     @{
                         foreach (var course in item.Courses)
                         {
-                            @course.CourseID @:  @course.Title <br />
+                            @course.ItemID @:  @course.Title <br />
                         }
                     }
                 </td>
@@ -78,16 +78,16 @@
         @foreach (var item in Model.InstructorData.Courses)
         {
             string selectedRow = "";
-            if (item.CourseID == Model.CourseID)
+            if (item.ItemID == Model.CourseID)
             {
                 selectedRow = "table-success";
             }
             <tr class="@selectedRow">
                 <td>
-                    <a asp-page="./Index" asp-route-courseID="@item.CourseID">Select</a>
+                    <a asp-page="./Index" asp-route-courseID="@item.ItemID">Select</a>
                 </td>
                 <td>
-                    @item.CourseID
+                    @item.ItemID
                 </td>
                 <td>
                     @item.Title

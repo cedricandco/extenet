@@ -15,7 +15,7 @@ public class DetailsModel : PageModel
         _context = context;
     }
 
-    public Instructor Instructor { get; set; }
+    public Vendor Vendor { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -24,9 +24,9 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        Instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.ID == id);
+        Vendor = await _context.Vendors.FirstOrDefaultAsync(m => m.ID == id);
 
-        if (Instructor == null)
+        if (Vendor == null)
         {
             return NotFound();
         }

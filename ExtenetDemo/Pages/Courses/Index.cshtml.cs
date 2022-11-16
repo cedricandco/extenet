@@ -14,11 +14,11 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Course> Courses { get; set; }
+    public IList<Item> Courses { get; set; }
 
     public async Task OnGetAsync()
     {
-        Courses = await _context.Courses
+        Courses = await _context.Items
             .Include(c => c.Department)
             .AsNoTracking()
             .ToListAsync();

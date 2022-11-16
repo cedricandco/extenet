@@ -25,6 +25,6 @@ public class Department
     [Timestamp]
     public byte[] ConcurrencyToken { get; set; }
 
-    public Instructor Administrator { get; set; }
-    public ICollection<Course> Courses { get; set; }
+    public Vendor Administrator { get; set; }
+    public ICollection<Item> Courses { get; set; }
 }

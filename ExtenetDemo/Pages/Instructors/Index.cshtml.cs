@@ -22,7 +22,7 @@ public class IndexModel : PageModel
     public async Task OnGetAsync(int? id, int? courseID)
     {
         InstructorData = new InstructorIndexData();
-        InstructorData.Instructors = await _context.Instructors
+        InstructorData.Instructors = await _context.Vendors
             .Include(i => i.OfficeAssignment)
             .Include(i => i.Courses)
                 .ThenInclude(c => c.Department)
@@ -32,23 +32,23 @@ public class IndexModel : PageModel
         if (id != null)
         {
             InstructorID = id.Value;
-            Instructor instructor = InstructorData.Instructors
+            Vendor vendor = InstructorData.Instructors
                 .Where(i => i.ID == id.Value).Single();
-            InstructorData.Courses = instructor.Courses;
+            InstructorData.Courses = vendor.Courses;
         }
 
         if (courseID != null)
         {
             CourseID = courseID.Value;
             var selectedCourse = InstructorData.Courses
-                .Where(x => x.CourseID == courseID).Single();
+                .Where(x => x.ItemID == courseID).Single();
             await _context.Entry(selectedCourse)
-                          .Collection(x => x.Enrollments).LoadAsync();
-            foreach (Enrollment enrollment in selectedCourse.Enrollments)
+                          .Collection(x => x.Sales).LoadAsync();
+            foreach (Sale enrollment in selectedCourse.Sales)
             {
                 await _context.Entry(enrollment).Reference(x => x.Client).LoadAsync();
             }
-            InstructorData.Enrollments = selectedCourse.Enrollments;
+            InstructorData.Enrollments = selectedCourse.Sales;
         }
     }
 }

@@ -23,9 +23,9 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        Client = await _context.Students
-            .Include(s => s.Enrollments)
-            .ThenInclude(e => e.Course)
+        Client = await _context.Clients
+            .Include(s => s.Sales)
+            .ThenInclude(e => e.Item)
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
 

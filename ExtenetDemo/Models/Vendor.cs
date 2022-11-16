@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Extenet.Models;
 
-public class Instructor
+public class Vendor
 {
     public int ID { get; set; }
 
@@ -29,6 +29,6 @@ public class Instructor
         get { return LastName + ", " + FirstMidName; }
     }
 
-    public ICollection<Course> Courses { get; set; }
+    public ICollection<Item> Courses { get; set; }
     public OfficeAssignment OfficeAssignment { get; set; }
 }

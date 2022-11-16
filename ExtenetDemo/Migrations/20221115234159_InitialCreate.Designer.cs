@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Extenet.Migrations
+namespace ExtenetDemo.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20221115232059_ChangeStudentByClient")]
-    partial class ChangeStudentByClient
+    [Migration("20221115234159_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,21 +23,6 @@ namespace Extenet.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CourseInstructor", b =>
-                {
-                    b.Property<int>("CoursesCourseID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InstructorsID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesCourseID", "InstructorsID");
-
-                    b.HasIndex("InstructorsID");
-
-                    b.ToTable("CourseInstructor");
-                });
 
             modelBuilder.Entity("Extenet.Models.Client", b =>
                 {
@@ -66,28 +51,6 @@ namespace Extenet.Migrations
                     b.ToTable("Client", (string)null);
                 });
 
-            modelBuilder.Entity("Extenet.Models.Course", b =>
-                {
-                    b.Property<int>("CourseID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Credits")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("CourseID");
-
-                    b.HasIndex("DepartmentID");
-
-                    b.ToTable("Course", (string)null);
-                });
-
             modelBuilder.Entity("Extenet.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentID")
@@ -95,6 +58,9 @@ namespace Extenet.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentID"), 1L, 1);
+
+                    b.Property<int?>("AdministratorID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Budget")
                         .HasColumnType("money");
@@ -116,41 +82,74 @@ namespace Extenet.Migrations
 
                     b.HasKey("DepartmentID");
 
-                    b.HasIndex("InstructorID");
+                    b.HasIndex("AdministratorID");
 
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Enrollment", b =>
+            modelBuilder.Entity("Extenet.Models.Item", b =>
                 {
-                    b.Property<int>("EnrollmentID")
+                    b.Property<int>("ItemID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ItemID");
+
+                    b.HasIndex("DepartmentID");
+
+                    b.ToTable("Item", (string)null);
+                });
+
+            modelBuilder.Entity("Extenet.Models.OfficeAssignment", b =>
+                {
+                    b.Property<int>("VendorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("VendorID");
+
+                    b.ToTable("OfficeAssignments");
+                });
+
+            modelBuilder.Entity("Extenet.Models.Sale", b =>
+                {
+                    b.Property<int>("SaleID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleID"), 1L, 1);
 
-                    b.Property<int?>("ClientID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseID")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int?>("Grade")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentID")
+                    b.Property<int>("ItemID")
                         .HasColumnType("int");
 
-                    b.HasKey("EnrollmentID");
+                    b.HasKey("SaleID");
 
                     b.HasIndex("ClientID");
 
-                    b.HasIndex("CourseID");
+                    b.HasIndex("ItemID");
 
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Instructor", b =>
+            modelBuilder.Entity("Extenet.Models.Vendor", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -174,39 +173,34 @@ namespace Extenet.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Instructor", (string)null);
+                    b.ToTable("Vendor", (string)null);
                 });
 
-            modelBuilder.Entity("Extenet.Models.OfficeAssignment", b =>
+            modelBuilder.Entity("ItemVendor", b =>
                 {
-                    b.Property<int>("InstructorID")
+                    b.Property<int>("CoursesItemID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Location")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("VendorsID")
+                        .HasColumnType("int");
 
-                    b.HasKey("InstructorID");
+                    b.HasKey("CoursesItemID", "VendorsID");
 
-                    b.ToTable("OfficeAssignments");
+                    b.HasIndex("VendorsID");
+
+                    b.ToTable("ItemVendor");
                 });
 
-            modelBuilder.Entity("CourseInstructor", b =>
+            modelBuilder.Entity("Extenet.Models.Department", b =>
                 {
-                    b.HasOne("Extenet.Models.Course", null)
+                    b.HasOne("Extenet.Models.Vendor", "Administrator")
                         .WithMany()
-                        .HasForeignKey("CoursesCourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AdministratorID");
 
-                    b.HasOne("Extenet.Models.Instructor", null)
-                        .WithMany()
-                        .HasForeignKey("InstructorsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Administrator");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Course", b =>
+            modelBuilder.Entity("Extenet.Models.Item", b =>
                 {
                     b.HasOne("Extenet.Models.Department", "Department")
                         .WithMany("Courses")
@@ -217,51 +211,54 @@ namespace Extenet.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Department", b =>
+            modelBuilder.Entity("Extenet.Models.OfficeAssignment", b =>
                 {
-                    b.HasOne("Extenet.Models.Instructor", "Administrator")
-                        .WithMany()
-                        .HasForeignKey("InstructorID");
+                    b.HasOne("Extenet.Models.Vendor", "Vendor")
+                        .WithOne("OfficeAssignment")
+                        .HasForeignKey("Extenet.Models.OfficeAssignment", "VendorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Administrator");
+                    b.Navigation("Vendor");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Enrollment", b =>
+            modelBuilder.Entity("Extenet.Models.Sale", b =>
                 {
                     b.HasOne("Extenet.Models.Client", "Client")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("ClientID");
+                        .WithMany("Sales")
+                        .HasForeignKey("ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Extenet.Models.Course", "Course")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("CourseID")
+                    b.HasOne("Extenet.Models.Item", "Item")
+                        .WithMany("Sales")
+                        .HasForeignKey("ItemID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Client");
 
-                    b.Navigation("Course");
+                    b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Extenet.Models.OfficeAssignment", b =>
+            modelBuilder.Entity("ItemVendor", b =>
                 {
-                    b.HasOne("Extenet.Models.Instructor", "Instructor")
-                        .WithOne("OfficeAssignment")
-                        .HasForeignKey("Extenet.Models.OfficeAssignment", "InstructorID")
+                    b.HasOne("Extenet.Models.Item", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesItemID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Instructor");
+                    b.HasOne("Extenet.Models.Vendor", null)
+                        .WithMany()
+                        .HasForeignKey("VendorsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Extenet.Models.Client", b =>
                 {
-                    b.Navigation("Enrollments");
-                });
-
-            modelBuilder.Entity("Extenet.Models.Course", b =>
-                {
-                    b.Navigation("Enrollments");
+                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("Extenet.Models.Department", b =>
@@ -269,7 +266,12 @@ namespace Extenet.Migrations
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Extenet.Models.Instructor", b =>
+            modelBuilder.Entity("Extenet.Models.Item", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("Extenet.Models.Vendor", b =>
                 {
                     b.Navigation("OfficeAssignment");
                 });

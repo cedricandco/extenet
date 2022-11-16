@@ -40,7 +40,7 @@ public class IndexModel : PageModel
 
         CurrentFilter = searchString;
 
-        IQueryable<Client> studentsIQ = from s in _context.Students
+        IQueryable<Client> studentsIQ = from s in _context.Clients
                                          select s;
         if (!String.IsNullOrEmpty(searchString))
         {

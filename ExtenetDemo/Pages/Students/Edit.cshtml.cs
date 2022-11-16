@@ -24,7 +24,7 @@ public class EditModel : PageModel
             return NotFound();
         }
 
-        Client = await _context.Students.FindAsync(id);
+        Client = await _context.Clients.FindAsync(id);
 
         if (Client == null)
         {
@@ -35,7 +35,7 @@ public class EditModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(int id)
     {
-        var studentToUpdate = await _context.Students.FindAsync(id);
+        var studentToUpdate = await _context.Clients.FindAsync(id);
 
         if (studentToUpdate == null)
         {
@@ -44,7 +44,7 @@ public class EditModel : PageModel
 
         if (await TryUpdateModelAsync<Client>(
             studentToUpdate,
-            "student",
+            "client",
             s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
         {
             await _context.SaveChangesAsync();
@@ -56,6 +56,6 @@ public class EditModel : PageModel
 
     private bool StudentExists(int id)
     {
-        return _context.Students.Any(e => e.ID == id);
+        return _context.Clients.Any(e => e.ID == id);
     }
 }
