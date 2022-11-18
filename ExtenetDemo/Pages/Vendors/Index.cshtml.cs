@@ -1,60 +1,27 @@
 ﻿using Extenet.Data;
 using Extenet.Models;
-using Extenet.Models.SchoolViewModels;  // Add VM
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace Extenet.Pages.Instructors;
+namespace Extenet.Pages.Vendors;
 
 public class IndexModel : PageModel
 {
     private readonly SchoolContext _context;
+    private readonly IConfiguration Configuration;
 
-    public IndexModel(SchoolContext context)
+    public IndexModel(SchoolContext context, IConfiguration configuration)
     {
         _context = context;
+        Configuration = configuration;
     }
 
-    public InstructorIndexData InstructorData { get; set; }
-    public int InstructorID { get; set; }
-    public int CourseID { get; set; }
+    public string NameSort { get; set; }
+    public string DateSort { get; set; }
+    public string CurrentFilter { get; set; }
+    public string CurrentSort { get; set; }
 
-    public async Task OnGetAsync(int? id, int? courseID)
-    {
-        InstructorData = new InstructorIndexData();
-        InstructorData.Instructors = await _context.Vendors
-            .Include(i => i.OfficeAssignment)
-            .Include(i => i.Courses)
-                .ThenInclude(c => c.Department)
-            .OrderBy(i => i.LastName)
-            .ToListAsync();
-
-        if (id != null)
-        {
-            InstructorID = id.Value;
-            Vendor vendor = InstructorData.Instructors
-                .Where(i => i.ID == id.Value).Single();
-            InstructorData.Courses = vendor.Courses;
-        }
-
-        if (courseID != null)
-        {
-            CourseID = courseID.Value;
-            var selectedCourse = InstructorData.Courses
-                .Where(x => x.ItemID == courseID).Single();
-            await _context.Entry(selectedCourse)
-                          .Collection(x => x.Sales).LoadAsync();
-            foreach (Sale enrollment in selectedCourse.Sales)
-            {
-                await _context.Entry(enrollment).Reference(x => x.Client).LoadAsync();
-            }
-            InstructorData.Enrollments = selectedCourse.Sales;
-        }
-    }
-
-
-    /*
-     * public PaginatedList<Client> Students { get; set; }
+    public PaginatedList<Vendor> Vendors { get; set; }
 
     public async Task OnGetAsync(string sortOrder,
         string currentFilter, string searchString, int? pageIndex)
@@ -73,32 +40,31 @@ public class IndexModel : PageModel
 
         CurrentFilter = searchString;
 
-        IQueryable<Client> studentsIQ = from s in _context.Clients
+        IQueryable<Vendor> vendorsIQ = from s in _context.Vendors
                                          select s;
         if (!String.IsNullOrEmpty(searchString))
         {
-            studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
+            vendorsIQ = vendorsIQ.Where(s => s.LastName.Contains(searchString)
                                    || s.FirstMidName.Contains(searchString));
         }
         switch (sortOrder)
         {
             case "name_desc":
-                studentsIQ = studentsIQ.OrderByDescending(s => s.LastName);
+                vendorsIQ = vendorsIQ.OrderByDescending(s => s.LastName);
                 break;
-            case "Date":
-                studentsIQ = studentsIQ.OrderBy(s => s.EnrollmentDate);
-                break;
-            case "date_desc":
-                studentsIQ = studentsIQ.OrderByDescending(s => s.EnrollmentDate);
-                break;
+            //case "Date":
+            //    vendorsIQ = vendorsIQ.OrderBy(s => s.EnrollmentDate);
+            //    break;
+            //case "date_desc":
+            //    vendorsIQ = vendorsIQ.OrderByDescending(s => s.EnrollmentDate);
+            //    break;
             default:
-                studentsIQ = studentsIQ.OrderBy(s => s.LastName);
+                vendorsIQ = vendorsIQ.OrderBy(s => s.LastName);
                 break;
         }
 
         var pageSize = Configuration.GetValue("PageSize", 4);
-        Students = await PaginatedList<Client>.CreateAsync(
-            studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+        Vendors = await PaginatedList<Vendor>.CreateAsync(
+            vendorsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
     }
-     */
 }

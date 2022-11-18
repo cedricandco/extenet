@@ -17,6 +17,7 @@ public class IndexModel : PageModel
     }
 
     public string NameSort { get; set; }
+    public string FirstNameSort { get; set; }
     public string DateSort { get; set; }
     public string CurrentFilter { get; set; }
     public string CurrentSort { get; set; }
@@ -28,6 +29,7 @@ public class IndexModel : PageModel
     {
         CurrentSort = sortOrder;
         NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+        FirstNameSort = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";
         DateSort = sortOrder == "Date" ? "date_desc" : "Date";
         if (searchString != null)
         {
@@ -51,6 +53,9 @@ public class IndexModel : PageModel
         {
             case "name_desc":
                 studentsIQ = studentsIQ.OrderByDescending(s => s.LastName);
+                break;
+            case "first_name_desc":
+                studentsIQ = studentsIQ.OrderByDescending(s => s.FirstMidName);
                 break;
             case "Date":
                 studentsIQ = studentsIQ.OrderBy(s => s.EnrollmentDate);
